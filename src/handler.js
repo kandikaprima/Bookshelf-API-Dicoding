@@ -63,6 +63,6 @@ const getBookByIdHandler = (request, h) => {
   });
   response.code(404);
   return response;
-};
+}; 
 
 module.exports = { addBookHandler, getAllBooksHandler, getBookByIdHandler };
