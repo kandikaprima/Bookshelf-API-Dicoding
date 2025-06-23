@@ -1,5 +1,1 @@
-import daStyle from 'eslint-config-dicodingacademy';
-
-export default [
-  daStyle
-];
+import daStyle from 'eslint-config-dicodingacademy';export default [daStyle,];
