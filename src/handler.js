@@ -72,18 +72,42 @@ const addBookHandler = (request, h) => {
 };
 
 /**
- * Handler untuk menampilkan seluruh buku.
+ * Handler untuk menampilkan seluruh buku dengan dukungan query filter.
  */
-const getAllBooksHandler = () => ({
-  status: 'success',
-  data: {
-    books: books.map((book) => ({
-      id: book.id,
-      name: book.name,
-      publisher: book.publisher,
-    })),
-  },
-});
+const getAllBooksHandler = (request, h) => {
+  const { name, reading, finished } = request.query;
+
+  let filteredBooks = books;
+
+  if (name !== undefined) {
+    filteredBooks = filteredBooks.filter((book) =>
+      book.name.toLowerCase().includes(name.toLowerCase()));
+  }
+
+  if (reading !== undefined) {
+    filteredBooks = filteredBooks.filter((book) =>
+      book.reading === (reading === '1'));
+  }
+
+  if (finished !== undefined) {
+    filteredBooks = filteredBooks.filter((book) =>
+      book.isFinished === (finished === '1'));
+  }
+
+  const response = {
+    status: 'success',
+    data: {
+      books: filteredBooks.map((book) => ({
+        id: book.id,
+        name: book.name,
+        publisher: book.publisher,
+      })),
+    },
+  };
+
+  return h.response(response).code(200);
+};
+
 
 /**
  * Handler untuk menampilkan detail buku berdasarkan ID.
