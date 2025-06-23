@@ -9,7 +9,7 @@ const addBookHandler = (request, h) => {
   const isFinished = (pageCount == readPage) ? true : false;
 
   const newBook = {
-   name, year, author, summary, publisher, pageCount, readPage, reading, id, createdAt, updatedAt, isFinished,
+   id, name, year, author, summary, publisher, pageCount, readPage, isFinished, reading, createdAt, updatedAt,
   };
  
   books.push(newBook);
@@ -36,4 +36,33 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addBookHandler };
+const getAllBooksHandler = () => ({
+  status: 'success',
+  data: {
+    books,
+  },
+});
+
+const getBookByIdHandler = (request, h) => {
+  const { id } = request.params;
+ 
+  const book = books.filter((b) => b.id === id)[0];
+ 
+  if (book !== undefined) {
+    return {
+      status: 'success',
+      data: {
+        book,
+      },
+    };
+  }
+ 
+  const response = h.response({
+    status: 'fail',
+    message: 'Catatan tidak ditemukan',
+  });
+  response.code(404);
+  return response;
+};
+
+module.exports = { addBookHandler, getAllBooksHandler, getBookByIdHandler };
