@@ -20,5 +20,8 @@
   "homepage": "https://github.com/kandikaprima/Bookshelf-API-Dicoding#readme",
   "dependencies": {
     "@hapi/hapi": "^21.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
