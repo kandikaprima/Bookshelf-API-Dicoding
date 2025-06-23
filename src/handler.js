@@ -19,7 +19,7 @@ const addBookHandler = (request, h) => {
   if (isSuccess) {
     const response = h.response({
       status: 'success',
-      message: 'Catatan berhasil ditambahkan',
+      message: 'Buku berhasil ditambahkan',
       data: {
         bookId: id,
       },
@@ -30,7 +30,7 @@ const addBookHandler = (request, h) => {
  
   const response = h.response({
     status: 'fail',
-    message: 'Catatan gagal ditambahkan',
+    message: 'Buku gagal ditambahkan',
   });
   response.code(500);
   return response;
@@ -59,10 +59,50 @@ const getBookByIdHandler = (request, h) => {
  
   const response = h.response({
     status: 'fail',
-    message: 'Catatan tidak ditemukan',
+    message: 'Buku tidak ditemukan',
   });
   response.code(404);
   return response;
-}; 
+};
 
-module.exports = { addBookHandler, getAllBooksHandler, getBookByIdHandler };
+const editBookByIdHandler = (request, h) => {
+  const { id } = request.params;
+  const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
+
+  const updatedAt = new Date().toISOString();
+  const isFinished = (pageCount == readPage) ? true : false;
+ 
+  const index = books.findIndex((book) => book.id === id);
+ 
+  if (index !== -1) {
+    books[index] = {
+      ...books[index],
+      name,
+      year,
+      author,
+      summary,
+      publisher,
+      pageCount,
+      readPage,
+      reading,
+      updatedAt,
+      isFinished,
+    };
+ 
+    const response = h.response({
+      status: 'success',
+      message: 'Buku berhasil diperbarui',
+    });
+    response.code(200);
+    return response;
+  }
+ 
+  const response = h.response({
+    status: 'fail',
+    message: 'Gagal memperbarui Buku. Id tidak ditemukan',
+  });
+  response.code(404);
+  return response;
+};
+
+module.exports = { addBookHandler, getAllBooksHandler, getBookByIdHandler, editBookByIdHandler };
