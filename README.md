@@ -20,12 +20,48 @@ API ini memungkinkan pengguna untuk:
 ## 🗂️ Struktur Direktori
 
 ```
-📁 src/
-├── books.js        # Array data buku (in-memory)
-├── handler.js      # Handler untuk setiap route (CRUD & Query)
-├── routes.js       # Routing endpoint
-└── server.js       # Konfigurasi dan run Hapi server
+📁 Bookshelf-API-Dicoding
+├── 📁 assets
+│   ├── 📁 postman
+|       ├── BookShelf API Dicoding.postman_collection.json
+|       ├── BookShelf API Dicoding.postman_test_run.json
+|       └── Bookshelf API Test.postman_environment.json
+│   ├── eslint-result.png
+│   └── Postman-result.png
+├── 📁 src
+│   ├── books.js
+│   ├── handler.js
+│   ├── routes.js
+│   └── server.js
+├── .gitignore
+├── .eslintrc.config.mjs
+├── package.json
+├── package-lock.json
+└── README.md
 ```
+
+## 🧪 Postman Testing
+
+Proyek ini telah diuji menggunakan **Postman** dengan *Collection* dan *Environment* dari Dicoding. Pengujian mencakup seluruh endpoint wajib dan opsional.
+
+### ✅ Hasil Pengujian
+
+- **Total Tes:** 104
+- **Lulus:** 104
+- **Gagal:** 0
+- **Durasi:** ±2 detik
+
+![Postman Test Result](assets/Postman-result.png)
+
+📁 File hasil pengujian dapat diakses:
+
+[`BookShelf API Dicoding.postman_test_run.json`] (assets/postman/BookShelf API Dicoding.postman_test_run.json)
+
+### 📦 File Pendukung Pengujian
+
+- `BookShelf API Dicoding.postman_collection.json`
+- `BookShelf API Dicoding.postman_test_run.json`
+- `Bookshelf API Test.postman_environment.json`
 
 ## 📌 Cara Menjalankan Aplikasi
 
@@ -94,7 +130,7 @@ Server akan berjalan pada: `http://localhost:9000`
 
 ---
 
-## ✅ Linter & Style Guide
+## ✅ ESLint & Style Guide
 
 Proyek ini menggunakan ESLint dengan konfigurasi `eslint-config-dicodingacademy` agar gaya penulisan kode lebih konsisten.
 
@@ -105,6 +141,6 @@ npm run lint
 
 - Jika ESLint tidak ada masalah:
 
-![Hasil linting](./eslint-result.png)
+![Hasil linting](assets/eslint-result.png)
 
 ---
